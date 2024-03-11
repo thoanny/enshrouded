@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-900 text-gray-100 p-4">
+  <div class="bg-neutral p-4">
     <ul class="flex gap-4">
       <li><NuxtLink :to="{ name: 'index' }">Accueil</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'items' }">Objets</NuxtLink></li>
