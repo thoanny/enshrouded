@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-neutral p-4">
-    <ul class="flex gap-4">
+  <div class="bg-neutral p-4 h-16">
+    <ul class="flex h-full items-center gap-4">
       <li><NuxtLink :to="{ name: 'index' }">Accueil</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'items' }">Objets</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'recipes' }">Recettes</NuxtLink></li>

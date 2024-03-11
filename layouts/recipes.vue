@@ -11,8 +11,52 @@ const { data: categories } = await useFetch(
       <!-- <pre>
         {{ categories }}
       </pre> -->
-      <div class="w-1/3">
-        <ul class="flex flex-col gap-2">
+      <div class="w-1/4">
+        <ul class="menu bg-base-200 w-full rounded-box">
+          <li
+            v-for="category in categories.filter((c) => !c.parentId)"
+            :key="category.id"
+          >
+            <details>
+              <summary class="font-bold">{{ category.name }}</summary>
+              <ul>
+                <li
+                  v-for="subcategory in categories.filter(
+                    (c) => c.parentId === category.id
+                  )"
+                  :key="subcategory.id"
+                >
+                  <details>
+                    <summary class="font-bold">{{ subcategory.name }}</summary>
+                    <ul>
+                      <li v-for="recipe in subcategory.recipes">
+                        <NuxtLink
+                          :to="{
+                            name: 'recipes-id',
+                            params: { id: recipe.id },
+                          }"
+                          class="italic"
+                        >
+                          {{ recipe.outputItem.name }}
+                        </NuxtLink>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li v-for="recipe in category.recipes">
+                  <NuxtLink
+                    :to="{ name: 'recipes-id', params: { id: recipe.id } }"
+                    class="italic"
+                  >
+                    {{ recipe.outputItem.name }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+
+        <!-- <ul class="flex flex-col gap-2">
           <li
             v-for="category in categories.filter((c) => {
               return !c.parentId;
@@ -45,13 +89,10 @@ const { data: categories } = await useFetch(
                 >
               </li>
             </ul>
-            <!-- <NuxtLink :to="{ name: 'recipes-id', params: { id: 1 } }">
-            Recette 1
-          </NuxtLink> -->
           </li>
-        </ul>
+        </ul> -->
       </div>
-      <div class="w-2/3"><slot /></div>
+      <div class="w-3/4"><slot /></div>
     </div>
     <AppFooter />
   </div>

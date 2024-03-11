@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --common: beige;
+  --uncommon: lightblue;
+  --rare: green;
+  --epic: purple;
+  --legendary: orange;
+}
+
+.text-quality-common {
+  color: var(--common);
+}
+
+.text-quality-uncommon {
+  color: var(--uncommon);
+}
+
+.text-quality-rare {
+  color: var(--rare);
+}
+
+.text-quality-epic {
+  color: var(--epic);
+}
+
+.text-quality-legendary {
+  color: var(--legendary);
+}
+
+.bg-quality-common {
+  background-color: var(--common);
+}
+
+.bg-quality-uncommon {
+  background-color: var(--uncommon);
+}
+
+.bg-quality-rare {
+  background-color: var(--rare);
+}
+
+.bg-quality-epic {
+  background-color: var(--epic);
+}
+
+.bg-quality-legendary {
+  background-color: var(--legendary);
+}
+
+.border-quality-common {
+  border-color: var(--common);
+}
+
+.border-quality-uncommon {
+  border-color: var(--uncommon);
+}
+
+.border-quality-rare {
+  border-color: var(--rare);
+}
+
+.border-quality-epic {
+  border-color: var(--epic);
+}
+
+.border-quality-legendary {
+  border-color: var(--legendary);
+}

@@ -8,25 +8,32 @@ const { data: items } = await useFetch(
   <div>
     <AppHeader />
     <div class="p-4 container mx-auto flex gap-4 w-full">
-      <div class="w-1/3">
-        <ul class="flex flex-col gap-2">
+      <div
+        class="w-7/12 overflow-y-auto bg-base-200 rounded-box"
+        style="max-height: calc(100dvh - 6rem)"
+      >
+        <ul class="grid grid-cols-8 gap-2 w-full p-2">
           <li v-for="item in items" :key="item.id">
             <NuxtLink
               :to="{ name: 'items-id', params: { id: item.id } }"
-              :class="`quality-${item.quality} flex gap-2 border border-gray-700 rounded p-2 items-center`"
+              :class="`quality-${item.quality}`"
             >
               <img
                 :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${item.icon}`"
                 :alt="item.name"
-                class="w-8 h-8 shrink-0"
+                class="w-full aspect-square shrink-0"
                 v-if="item.icon"
               />
-              {{ item.name }}
+              <span
+                class="border rounded w-full aspect-square text-xs flex items-center justify-center text-center p-2"
+                v-else
+                >{{ item.name }}</span
+              >
             </NuxtLink>
           </li>
         </ul>
       </div>
-      <div class="w-2/3"><slot /></div>
+      <div class="w-5/12"><slot /></div>
     </div>
     <AppFooter />
   </div>
