@@ -5,10 +5,6 @@ const { data: recipe } = await useFetch(
   `https://api.lebusmagique.fr/api/enshrouded/recipes/${route.params.id}`
 );
 
-definePageMeta({
-  layout: "recipes",
-});
-
 useSeoMeta({
   title: recipe.value.outputItem.name,
   ogTitle: recipe.value.outputItem.name,

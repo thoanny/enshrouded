@@ -5,10 +5,6 @@ const { data: item } = await useFetch(
   `https://api.lebusmagique.fr/api/enshrouded/items/${route.params.id}`
 );
 
-definePageMeta({
-  layout: "items",
-});
-
 useSeoMeta({
   title: item.value.name,
   ogTitle: item.value.name,
