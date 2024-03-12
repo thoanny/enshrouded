@@ -34,7 +34,14 @@ const { data: categories } = await useFetch(
                 :key="subcategory.id"
               >
                 <details>
-                  <summary class="font-bold">{{ subcategory.name }}</summary>
+                  <summary>
+                    <span class="truncate font-bold">
+                      {{ subcategory.name }}
+                    </span>
+                    <div class="badge badge-neutral badge-sm">
+                      {{ subcategory.recipesCount }}
+                    </div>
+                  </summary>
                   <ul>
                     <li v-for="recipe in subcategory.recipes">
                       <NuxtLink
