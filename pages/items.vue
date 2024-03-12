@@ -13,12 +13,11 @@ const { data: items } = await useFetch(
 );
 </script>
 <template>
-  <div class="p-4 container mx-auto flex gap-4 w-full">
-    <div
-      class="w-7/12 overflow-y-auto bg-base-200 rounded-box"
-      style="max-height: calc(100dvh - 6rem)"
-    >
-      <div class="grid grid-cols-4 xl:grid-cols-8 gap-2 w-full p-4">
+  <div class="container mx-auto flex gap-4 w-full">
+    <div class="w-7/12 bg-base-200 rounded-box p-4">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8 gap-2 w-full overflow-y-auto pr-4 scroll"
+      >
         <NuxtLink
           :to="{ name: 'items-id', params: { id: item.id } }"
           :class="`quality-${item.quality} rounded-xl aspect-square w-full flex items-center justify-center text-center overflow-hidden border border-neutral`"
@@ -42,5 +41,12 @@ const { data: items } = await useFetch(
 <style scoped>
 .router-link-active {
   @apply bg-neutral;
+}
+.scroll {
+  max-height: calc(100dvh - 12rem);
+}
+
+.scroll::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
 }
 </style>

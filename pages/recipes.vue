@@ -13,18 +13,19 @@ const { data: categories } = await useFetch(
 );
 </script>
 <template>
-  <div class="p-4 container mx-auto flex gap-4 w-full">
-    <!-- <pre>
-        {{ categories }}
-      </pre> -->
-    <div class="w-1/4">
-      <ul class="menu bg-base-200 w-full rounded-box">
-        <li
-          v-for="category in categories.filter((c) => !c.parentId)"
-          :key="category.id"
-        >
-          <details>
-            <summary class="font-bold">{{ category.name }}</summary>
+  <div class="container mx-auto flex gap-4 w-full">
+    <div class="w-1/4 bg-base-200 rounded-box p-4">
+      <div
+        class="w-full pr-4 overflow-y-auto scroll"
+        style="max-height: calc(100dvh - 12rem)"
+      >
+        <ul class="menu text-base p-0">
+          <li
+            v-for="category in categories.filter((c) => !c.parentId)"
+            :key="category.id"
+          >
+            <h2 class="menu-title uppercase">{{ category.name }}</h2>
+
             <ul>
               <li
                 v-for="subcategory in categories.filter(
@@ -58,10 +59,16 @@ const { data: categories } = await useFetch(
                 </NuxtLink>
               </li>
             </ul>
-          </details>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="w-3/4"><NuxtPage /></div>
   </div>
 </template>
+
+<style scoped>
+.scroll::-webkit-scrollbar-track {
+  border-radius: 0.5rem;
+}
+</style>

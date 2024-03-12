@@ -21,12 +21,15 @@ useSeoMeta({
       <ItemDetails :item="recipe.outputItem" />
     </div>
     <div class="w-2/5 p-4">
-      <div v-if="recipe.requirements.length > 0">
-        <h4 class="text-xl font-bold mb-4">Exigences</h4>
+      <div
+        v-if="recipe.requirements.length > 0"
+        class="border rounded-box border-neutral p-4"
+      >
+        <h4 class="text-xl font-bold mb-4 leading-4">Exigences</h4>
         <div v-for="requirement in recipe.requirements"></div>
       </div>
-      <div>
-        <h4 class="text-xl font-bold mb-4">Ressources</h4>
+      <div class="border rounded-box border-neutral p-4">
+        <h4 class="text-xl font-bold mb-4 leading-4">Ressources</h4>
         <div class="flex flex-col gap-2">
           <div
             class="flex gap-4 items-center justify-between text-lg"
