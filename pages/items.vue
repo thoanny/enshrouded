@@ -8,13 +8,44 @@ useSeoMeta({
   // twitterCard: "summary_large_image",
 });
 
-const { data: items } = await useFetch(
+const category = ref("");
+const items = ref([]);
+
+const { data: allItems } = await useFetch(
   "https://api.lebusmagique.fr/api/enshrouded/items"
 );
+
+const { data: categories } = await useFetch(
+  "https://api.lebusmagique.fr/api/enshrouded/items/categories"
+);
+
+onMounted(() => {
+  items.value = allItems.value;
+});
+
+watch(category, async () => {
+  if (category.value.length === 0) {
+    items.value = allItems.value;
+  } else {
+    items.value = allItems.value.filter(
+      (item) => item.category.id === category.value
+    );
+  }
+});
 </script>
 <template>
   <div class="container mx-auto flex gap-4 w-full">
     <div class="w-7/12 bg-base-200 rounded-box p-4">
+      <select class="select select-sm select-bordered mb-4" v-model="category">
+        <option value="">-- Catégories --</option>
+        <option
+          v-for="category in categories"
+          :value="category.id"
+          :key="category.id"
+        >
+          {{ category.name }}
+        </option>
+      </select>
       <div
         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8 gap-2 w-full overflow-y-auto pr-4 scroll"
       >
@@ -43,7 +74,8 @@ const { data: items } = await useFetch(
   @apply bg-neutral;
 }
 .scroll {
-  max-height: calc(100dvh - 12rem);
+  max-height: calc(100dvh - 15rem);
+  scrollbar-gutter: stable;
 }
 
 .scroll::-webkit-scrollbar-track {

@@ -16,7 +16,7 @@ const { data: categories } = await useFetch(
   <div class="container mx-auto flex gap-4 w-full">
     <div class="w-1/4 bg-base-200 rounded-box p-4">
       <div
-        class="w-full pr-4 overflow-y-auto scroll"
+        class="w-full pr-2 overflow-y-auto scroll"
         style="max-height: calc(100dvh - 12rem)"
       >
         <ul class="menu text-base p-0">
@@ -35,7 +35,7 @@ const { data: categories } = await useFetch(
               >
                 <details>
                   <summary>
-                    <span class="truncate font-bold">
+                    <span class="truncate font-semibold">
                       {{ subcategory.name }}
                     </span>
                     <div class="badge badge-neutral badge-sm">
@@ -51,6 +51,12 @@ const { data: categories } = await useFetch(
                         }"
                         class="italic"
                       >
+                        <img
+                          :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
+                          :alt="recipe.outputItem.name"
+                          class="w-6 h-6 rounded"
+                          v-if="recipe.outputItem.icon"
+                        />
                         {{ recipe.outputItem.name }}
                       </NuxtLink>
                     </li>
@@ -62,6 +68,12 @@ const { data: categories } = await useFetch(
                   :to="{ name: 'recipes-id', params: { id: recipe.id } }"
                   class="italic"
                 >
+                  <img
+                    :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
+                    :alt="recipe.outputItem.name"
+                    class="w-6 h-6 rounded"
+                    v-if="recipe.outputItem.icon"
+                  />
                   {{ recipe.outputItem.name }}
                 </NuxtLink>
               </li>
