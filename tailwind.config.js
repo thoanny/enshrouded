@@ -9,8 +9,23 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        quality: {
+          common: "#e1f3d2",
+          uncommon: "#53d57d",
+          rare: "#a8e1ff",
+          epic: "#d4b5ff",
+          legendary: "#ffe03e",
+        },
+      },
+    },
   },
+  safelist: [
+    {
+      pattern: /(text|border)-quality-(common|uncommon|rare|epic|legendary)/,
+    },
+  ],
   daisyui: {
     themes: ["dark"],
   },
