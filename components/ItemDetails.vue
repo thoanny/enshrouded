@@ -35,12 +35,18 @@ const quality = {
       {{ quality[item.quality] }}
     </div>
     <div class="text-lg">
-      <div>
-        {{ item.description }}
-      </div>
-      <div>
-        {{ item.comment }}
-      </div>
+      <MDC
+        :value="item.description"
+        v-if="item.description"
+        class="description"
+      />
+      <MDC :value="item.comment" v-if="item.comment" class="comment" />
     </div>
   </div>
 </template>
+
+<style>
+.description p {
+  @apply mb-4;
+}
+</style>
