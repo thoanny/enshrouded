@@ -39,7 +39,7 @@ useSeoMeta({
               <img
                 :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${ingredient.item.icon}`"
                 :alt="ingredient.item.name"
-                class="w-12 h-12 bg-black bg-opacity-25 rounded"
+                class="w-12 h-12 bg-black bg-opacity-25 rounded-lg"
                 v-if="ingredient.item.icon"
               />
               <span>{{ ingredient.item.name }}</span>
