@@ -49,4 +49,7 @@ const quality = {
 .description p {
   @apply mb-4;
 }
+.description kbd {
+  @apply kbd kbd-md;
+}
 </style>
