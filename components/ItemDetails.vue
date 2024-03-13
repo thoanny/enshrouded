@@ -46,10 +46,16 @@ const quality = {
 </template>
 
 <style>
-.description p {
+.description p,
+.comment p {
   @apply mb-4;
 }
-.description kbd {
+.description kbd,
+.comment kbd {
   @apply kbd kbd-md;
+}
+.description hr,
+.comment hr {
+  @apply w-8 border-neutral border-t-2 mb-4;
 }
 </style>
