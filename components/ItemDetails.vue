@@ -26,6 +26,8 @@ const quality = {
         :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${item.icon}`"
         :alt="item.name"
         class="w-64 h-64 absolute z-10 top-0 right-0 rounded-box"
+        width="256"
+        height="256"
         v-if="item.icon"
       />
     </header>

@@ -52,10 +52,12 @@ const { data: categories } = await useFetch(
                         class="italic"
                       >
                         <img
-                          :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
+                          :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
                           :alt="recipe.outputItem.name"
                           class="w-6 h-6 rounded"
-                          v-if="recipe.outputItem.icon"
+                          width="24"
+                          height="24"
+                          v-if="recipe.outputItem.icon24x24"
                         />
                         {{ recipe.outputItem.name }}
                       </NuxtLink>
@@ -69,10 +71,12 @@ const { data: categories } = await useFetch(
                   class="italic"
                 >
                   <img
-                    :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
+                    :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
                     :alt="recipe.outputItem.name"
                     class="w-6 h-6 rounded"
-                    v-if="recipe.outputItem.icon"
+                    width="24"
+                    height="24"
+                    v-if="recipe.outputItem.icon24x24"
                   />
                   {{ recipe.outputItem.name }}
                 </NuxtLink>

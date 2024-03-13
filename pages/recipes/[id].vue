@@ -37,10 +37,12 @@ useSeoMeta({
           >
             <div class="flex gap-2 items-center">
               <img
-                :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${ingredient.item.icon}`"
+                :src="`https://api.lebusmagique.fr${ingredient.item.icon48x48}`"
                 :alt="ingredient.item.name"
                 class="w-12 h-12 bg-black bg-opacity-25 rounded-lg"
-                v-if="ingredient.item.icon"
+                width="48"
+                height="48"
+                v-if="ingredient.item.icon48x48"
               />
               <span>{{ ingredient.item.name }}</span>
             </div>

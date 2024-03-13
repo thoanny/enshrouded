@@ -56,10 +56,12 @@ watch(category, async () => {
           :key="item.id"
         >
           <img
-            :src="`https://api.lebusmagique.fr/uploads/api/enshrouded/items/${item.icon}`"
+            :src="`https://api.lebusmagique.fr${item.icon96x96}`"
             :alt="item.name"
             class="w-full aspect-square shrink-0"
-            v-if="item.icon"
+            width="96"
+            height="96"
+            v-if="item.icon96x96"
           />
           <span class="text-xs p-2 truncate" v-else>{{ item.name }}</span>
         </NuxtLink>
