@@ -23,7 +23,7 @@ export default {
   },
   safelist: [
     {
-      pattern: /(text|border)-quality-(common|uncommon|rare|epic|legendary)/,
+      pattern: /(text|border|bg)-quality-(common|uncommon|rare|epic|legendary)/,
     },
   ],
   daisyui: {

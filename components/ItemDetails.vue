@@ -32,17 +32,23 @@ const quality = {
       />
     </header>
     <div
-      :class="`text-quality-${item.quality} border-b-2 border-quality-${item.quality} uppercase font-semibold pb-2 mb-4`"
+      :class="`text-quality-${item.quality} border-b-2 border-quality-${item.quality} uppercase font-semibold pb-2`"
     >
       {{ quality[item.quality] }}
     </div>
-    <div class="text-lg">
-      <MDC
-        :value="item.description"
-        v-if="item.description"
-        class="description"
-      />
-      <MDC :value="item.comment" v-if="item.comment" class="comment" />
+    <div class="overflow-hidden min-h-20 relative pt-14">
+      <div
+        class="w-72 h-72 blur-xl rounded-full mx-auto -mt-80 opacity-25"
+        :class="`bg-quality-${item.quality}`"
+      ></div>
+      <div class="text-lg drop-shadow-sm">
+        <MDC
+          :value="item.description"
+          v-if="item.description"
+          class="description"
+        />
+        <MDC :value="item.comment" v-if="item.comment" class="comment" />
+      </div>
     </div>
   </div>
 </template>
