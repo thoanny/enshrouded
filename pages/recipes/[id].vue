@@ -23,10 +23,43 @@ useSeoMeta({
     <div class="w-2/5 p-4">
       <div
         v-if="recipe.requirements.length > 0"
-        class="border rounded-box border-neutral p-4"
+        class="border rounded-box border-neutral p-4 mb-4"
       >
         <h4 class="text-xl font-bold mb-4 leading-4">Exigences</h4>
-        <div v-for="requirement in recipe.requirements"></div>
+        <div class="flex flex-col gap-2">
+          <div
+            class="flex gap-4 items-center justify-between text-lg"
+            v-for="requirement in recipe.requirements"
+          >
+            <div class="flex gap-2 items-center">
+              <img
+                :src="
+                  requirement.source.npc
+                    ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${requirement.source.npc.icon}`
+                    : `https://api.lebusmagique.fr${requirement.source.item.icon48x48}`
+                "
+                :alt="
+                  requirement.source.npc
+                    ? requirement.source.npc.name
+                    : requirement.source.item.name
+                "
+                class="w-12 h-12 bg-black bg-opacity-25 rounded-lg"
+                width="48"
+                height="48"
+                v-if="
+                  requirement.source.npc
+                    ? requirement.source.npc.icon
+                    : requirement.source.item.icon48x48
+                "
+              />
+              <span>{{
+                requirement.source.npc
+                  ? requirement.source.npc.name
+                  : requirement.source.item.name
+              }}</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="border rounded-box border-neutral p-4">
         <h4 class="text-xl font-bold mb-4 leading-4">Ressources</h4>
@@ -51,7 +84,7 @@ useSeoMeta({
         </div>
       </div>
     </div>
-    <!-- <pre>{{ recipe }}</pre> -->
+    <!-- <pre>{{ recipe.requirements }}</pre> -->
     <!-- <h1 class="text-4xl font-bold">{{ recipe.outputItem.name }}</h1>
     <h2>Ingrédients</h2>
     <ul>
