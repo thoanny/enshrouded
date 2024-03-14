@@ -8,6 +8,10 @@ useSeoMeta({
   // twitterCard: "summary_large_image",
 });
 
+const { data: stats } = await useFetch(
+  "https://api.lebusmagique.fr/api/enshrouded"
+);
+
 const roadmap = [
   {
     title: "Structure des données",
@@ -60,6 +64,16 @@ const roadmap = [
         >Keen games</a
       >.
     </p>
+  </div>
+  <div class="max-w-xl mx-auto mb-6">
+    <div class="flex gap-4 font-semibold uppercase">
+      <NuxtLink class="btn w-1/2" :to="{ name: 'items' }">
+        {{ stats.items }} objets
+      </NuxtLink>
+      <NuxtLink class="btn w-1/2" :to="{ name: 'recipes' }">
+        {{ stats.recipes }} recettes
+      </NuxtLink>
+    </div>
   </div>
   <div class="max-w-2xl mx-auto mb-6">
     <img
