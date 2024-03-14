@@ -25,7 +25,7 @@ useSeoMeta({
         v-if="recipe.requirements.length > 0"
         class="border rounded-box border-neutral p-4 mb-4"
       >
-        <h4 class="text-xl font-bold mb-4 leading-4">Exigences</h4>
+        <h2 class="text-xl font-bold mb-4 leading-4">Exigences</h2>
         <div class="flex flex-col gap-2">
           <div
             class="flex gap-4 items-center justify-between text-lg"
@@ -62,7 +62,7 @@ useSeoMeta({
         </div>
       </div>
       <div class="border rounded-box border-neutral p-4">
-        <h4 class="text-xl font-bold mb-4 leading-4">Ressources</h4>
+        <h2 class="text-xl font-bold mb-4 leading-4">Ressources</h2>
         <div class="flex flex-col gap-2">
           <div
             class="flex gap-4 items-center justify-between text-lg"

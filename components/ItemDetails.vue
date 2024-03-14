@@ -49,6 +49,41 @@ const quality = {
         />
         <MDC :value="item.comment" v-if="item.comment" class="comment" />
       </div>
+      <div v-if="item.recipes?.length > 0" class="mb-4">
+        <h2 class="text-xl font-bold mb-4 leading-4">
+          {{ item.recipes.length > 1 ? "Recettes" : "Recette" }}
+        </h2>
+        <div>
+          <NuxtLink
+            v-for="recipe in item.recipes"
+            :to="{ name: 'recipes-id', params: { id: recipe.id } }"
+            :key="recipe.id"
+            class="btn btn-sm btn-outline"
+          >
+            {{ recipe.name }}
+          </NuxtLink>
+        </div>
+      </div>
+      <div v-if="item.recipeIngredients?.length > 0" class="mb-4">
+        <h2 class="text-xl font-bold mb-4 leading-4">
+          {{
+            item.recipeIngredients.length > 1
+              ? "Ingrédient utilisé dans les recettes"
+              : "Ingrédient utilisé dans la recette"
+          }}
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          <NuxtLink
+            v-for="ingredient in item.recipeIngredients"
+            :to="{ name: 'recipes-id', params: { id: ingredient.recipe.id } }"
+            :key="ingredient.recipe.id"
+            class="btn btn-sm btn-outline"
+          >
+            {{ ingredient.recipe.name }}
+            <small>&times;{{ ingredient.quantity }}</small>
+          </NuxtLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
