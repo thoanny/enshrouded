@@ -34,7 +34,7 @@ watch(category, async () => {
 });
 </script>
 <template>
-  <div class="container mx-auto flex gap-4 w-full">
+  <div class="container mx-auto flex gap-4 w-full items-start">
     <div class="w-7/12 bg-base-200 rounded-box p-4">
       <select class="select select-sm select-bordered mb-4" v-model="category">
         <option value="">-- Catégories --</option>

@@ -17,10 +17,10 @@ useSeoMeta({
 
 <template>
   <div class="flex gap-4">
-    <div class="w-3/5 p-4">
+    <div class="w-3/5">
       <ItemDetails :item="recipe.outputItem" />
     </div>
-    <div class="w-2/5 p-4">
+    <div class="w-2/5">
       <div
         v-if="recipe.requirements.length > 0"
         class="border rounded-box border-neutral p-4 mb-4"

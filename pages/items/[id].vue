@@ -16,11 +16,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="p-4">
+  <div>
     <ItemDetails :item="item" />
-
-    <pre>
-      <!-- {{ item }} -->
-    </pre>
   </div>
 </template>
