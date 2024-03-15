@@ -19,16 +19,46 @@ const { data: sources } = await useFetch(
   "https://api.lebusmagique.fr/api/enshrouded/recipes/sources"
 );
 
+const compareByName = (a, b) => {
+  return a.name.localeCompare(b.name);
+};
+
 onMounted(() => {
   categories.value = allCategories.value;
+  sources.value.sort(compareByName);
 });
+
+watch(source, async (source) => {
+  if (source > 0) {
+    categories.value = allCategories.value.map((category) => {
+      const recipes = category.recipes.filter((recipe) => {
+        return recipe.source?.id === source;
+      });
+
+      return { ...category, recipes, recipesCount: recipes.length };
+    });
+  } else {
+    categories.value = allCategories.value;
+  }
+});
+
+const getChildRecipesCount = (category) => {
+  const arr = categories.value.filter((c) => c.parentId === category.id);
+  let total = 0;
+  if (arr.length > 0) {
+    arr.forEach((c) => {
+      total += c.recipesCount;
+    });
+  }
+
+  return (total += category.recipesCount);
+};
 </script>
 <template>
   <div class="container mx-auto flex gap-4 w-full">
     <div class="w-1/4 bg-base-200 rounded-box p-4">
       <select class="select select-sm select-bordered mb-4" v-model="source">
         <option value="-1">-- Sources --</option>
-        <option value="0">Fabrication manuelle</option>
         <option v-for="source in sources" :value="source.id" :key="source.id">
           {{ source.name }}
         </option>
@@ -42,55 +72,53 @@ onMounted(() => {
             v-for="category in categories.filter((c) => !c.parentId)"
             :key="category.id"
           >
-            <h2 class="menu-title uppercase">{{ category.name }}</h2>
-
-            <ul>
+            <h2
+              class="menu-title uppercase"
+              v-if="getChildRecipesCount(category)"
+            >
+              {{ category.name }}
+            </h2>
+            <ul v-if="getChildRecipesCount(category)">
               <li
                 v-for="subcategory in categories.filter(
                   (c) => c.parentId === category.id
                 )"
                 :key="subcategory.id"
               >
-                <h2 class="menu-title font-semibold">
-                  {{ subcategory.name }}
-                </h2>
-                <ul>
-                  <li v-for="recipe in subcategory.recipes" :key="recipe.id">
-                    <NuxtLink
-                      :to="{
-                        name: 'recipes-id',
-                        params: { id: recipe.id },
-                      }"
-                      class="italic"
-                      v-if="
-                        source < 0 ||
-                        (source === 0 &&
-                          typeof recipe.source.id == 'undefined') ||
-                        (source > 0 && recipe.source?.id === source)
-                      "
-                    >
-                      <img
-                        :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
-                        :alt="recipe.outputItem.name"
-                        class="w-6 h-6 rounded"
-                        width="24"
-                        height="24"
-                        v-if="recipe.outputItem.icon24x24"
-                      />
-                      {{ recipe.outputItem.name }}
-                    </NuxtLink>
-                  </li>
-                </ul>
+                <details v-if="subcategory.recipesCount > 0">
+                  <summary>
+                    {{ subcategory.name }}
+                    <span class="badge badge-sm badge-primary">{{
+                      subcategory.recipesCount
+                    }}</span>
+                  </summary>
+                  <ul v-if="subcategory.recipesCount > 0">
+                    <li v-for="recipe in subcategory.recipes" :key="recipe.id">
+                      <NuxtLink
+                        :to="{
+                          name: 'recipes-id',
+                          params: { id: recipe.id },
+                        }"
+                        class="italic"
+                      >
+                        <img
+                          :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
+                          :alt="recipe.outputItem.name"
+                          class="w-6 h-6 rounded"
+                          width="24"
+                          height="24"
+                          v-if="recipe.outputItem.icon24x24"
+                        />
+                        {{ recipe.outputItem.name }}
+                      </NuxtLink>
+                    </li>
+                  </ul>
+                </details>
               </li>
               <li v-for="recipe in category.recipes" :key="recipe.id">
                 <NuxtLink
                   :to="{ name: 'recipes-id', params: { id: recipe.id } }"
                   class="italic"
-                  v-if="
-                    source < 0 ||
-                    (source === 0 && typeof recipe.source.id == 'undefined') ||
-                    (source > 0 && recipe.source?.id === source)
-                  "
                 >
                   <img
                     :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
@@ -108,7 +136,9 @@ onMounted(() => {
         </ul>
       </div>
     </div>
-    <div class="w-3/4"><NuxtPage /></div>
+    <div class="w-3/4">
+      <NuxtPage />
+    </div>
   </div>
 </template>
 
