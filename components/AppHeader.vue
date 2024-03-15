@@ -1,3 +1,7 @@
+<script setup>
+const menuModal = ref();
+</script>
+
 <template>
   <div
     class="bg-accent-content p-4 h-16 flex gap-4 justify-between items-center"
@@ -6,20 +10,20 @@
       <img
         src="~/assets/img/enshrouded-logo.svg"
         alt=""
-        class="h-auto w-36 -mt-4"
+        class="h-auto w-36 -mt-4 shrink-0"
       />
       <span class="absolute top-2 left-6">Base de données</span>
     </NuxtLink>
-    <ul class="flex h-full items-center gap-4 font-bold">
+    <ul class="hidden lg:flex h-full items-center gap-4 font-bold">
       <li><NuxtLink :to="{ name: 'items' }">Objets</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'recipes' }">Recettes</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'about' }">À propos</NuxtLink></li>
     </ul>
-    <span class="w-36 shrink-0 flex justify-end gap-2">
+    <span class="w-auto md:w-36 shrink-0 flex justify-end gap-2">
       <a
         href="https://github.com/thoanny/enshrouded"
         target="_blank"
-        class="btn btn-circle btn-sm"
+        class="btn btn-circle btn-sm hidden lg:inline-flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +39,7 @@
       <a
         href="https://patreon.com/thoanny"
         target="_blank"
-        class="btn btn-circle btn-sm"
+        class="btn btn-circle btn-sm hidden lg:inline-flex"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +52,78 @@
           />
         </svg>
       </a>
+      <button
+        class="btn btn-circle inline-flex lg:hidden"
+        @click="menuModal.showModal()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+      </button>
     </span>
+    <dialog ref="menuModal" class="modal">
+      <div class="modal-box p-0" style="max-width: 14rem">
+        <ul class="menu menu-lg w-full font-bold">
+          <li tabindex="0">
+            <NuxtLink :to="{ name: 'index' }" @click="menuModal.close()">
+              Accueil
+            </NuxtLink>
+          </li>
+          <li tabindex="0">
+            <NuxtLink :to="{ name: 'items' }" @click="menuModal.close()">
+              Objets
+            </NuxtLink>
+          </li>
+          <li tabindex="0">
+            <NuxtLink :to="{ name: 'recipes' }" @click="menuModal.close()">
+              Recettes
+            </NuxtLink>
+          </li>
+          <li tabindex="0">
+            <NuxtLink :to="{ name: 'about' }" @click="menuModal.close()">
+              À propos
+            </NuxtLink>
+          </li>
+          <li tabindex="0">
+            <a
+              href="https://github.com/thoanny/enshrouded"
+              target="_blank"
+              class=""
+            >
+              Code source
+            </a>
+          </li>
+          <li tabindex="0">
+            <a href="https://patreon.com/thoanny" target="_blank" class="">
+              Soutenir le projet
+            </a>
+          </li>
+        </ul>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 
 <style scoped>
 .router-link-active {
   @apply text-white;
+}
+
+dialog .menu a {
+  @apply justify-center;
 }
 </style>

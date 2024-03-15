@@ -66,11 +66,13 @@ const roadmap = [
     </p>
   </div>
   <div class="max-w-xl mx-auto mb-6">
-    <div class="flex gap-4 font-semibold uppercase">
-      <NuxtLink class="btn w-1/2" :to="{ name: 'items' }">
+    <div
+      class="flex flex-col md:flex-row gap-2 md:gap-4 font-semibold uppercase"
+    >
+      <NuxtLink class="btn w-full md:w-1/2" :to="{ name: 'items' }">
         {{ stats.items }} objets
       </NuxtLink>
-      <NuxtLink class="btn w-1/2" :to="{ name: 'recipes' }">
+      <NuxtLink class="btn w-full md:w-1/2" :to="{ name: 'recipes' }">
         {{ stats.recipes }} recettes
       </NuxtLink>
     </div>

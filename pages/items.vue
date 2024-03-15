@@ -34,8 +34,10 @@ watch(category, async () => {
 });
 </script>
 <template>
-  <div class="container mx-auto flex gap-4 w-full items-start">
-    <div class="w-7/12 bg-base-200 rounded-box p-4">
+  <div
+    class="container mx-auto flex flex-col-reverse md:flex-row gap-4 w-full items-start"
+  >
+    <div class="w-full md:w-7/12 bg-base-200 rounded-box p-4">
       <select class="select select-sm select-bordered mb-4" v-model="category">
         <option value="">-- Catégories --</option>
         <option
@@ -47,7 +49,7 @@ watch(category, async () => {
         </option>
       </select>
       <div
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8 gap-2 w-full overflow-y-auto pr-4 scroll"
+        class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8 gap-2 w-full overflow-y-auto pr-4 scroll"
       >
         <NuxtLink
           :to="{ name: 'items-id', params: { id: item.id } }"
@@ -67,7 +69,7 @@ watch(category, async () => {
         </NuxtLink>
       </div>
     </div>
-    <div class="w-5/12"><NuxtPage /></div>
+    <div class="w-full md:w-5/12"><NuxtPage /></div>
   </div>
 </template>
 

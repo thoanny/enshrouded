@@ -55,8 +55,10 @@ const getChildRecipesCount = (category) => {
 };
 </script>
 <template>
-  <div class="container mx-auto flex gap-4 w-full items-start">
-    <div class="w-1/4 bg-base-200 rounded-box p-4">
+  <div
+    class="container mx-auto flex flex-col-reverse md:flex-row gap-4 w-full items-start"
+  >
+    <div class="w-full md:w-1/2 lg:w-1/3 2xl:w-1/4 bg-base-200 rounded-box p-4">
       <select class="select select-sm select-bordered mb-4" v-model="source">
         <option value="-1">-- Sources --</option>
         <option v-for="source in sources" :value="source.id" :key="source.id">
@@ -136,7 +138,7 @@ const getChildRecipesCount = (category) => {
         </ul>
       </div>
     </div>
-    <div class="w-3/4">
+    <div class="w-full md:w-1/2 lg:w-2/3 2xl:w-3/4">
       <NuxtPage />
     </div>
   </div>
