@@ -2,10 +2,11 @@
 useSeoMeta({
   title: "Tous les objets",
   ogTitle: "Tous les objets",
-  // description: "This is my amazing site, let me tell you all about it.",
-  // ogDescription: "This is my amazing site, let me tell you all about it.",
-  // ogImage: "https://example.com/image.png",
-  // twitterCard: "summary_large_image",
+  description: `Base de données d'objets d'Enshrouded, jeu de survie coopératif.`,
+  ogDescription:
+    "Base de données d'objets d'Enshrouded, jeu de survie coopératif.",
+  ogImage: "/enshrouded.jpg",
+  twitterCard: "summary_large_image",
 });
 
 const category = ref("");

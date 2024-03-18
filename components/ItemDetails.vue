@@ -68,10 +68,7 @@ const quality = {
           </div>
         </div>
       </div>
-      <div
-        v-if="item.recipes?.length > 0"
-        :class="{ 'mb-4': item.recipeIngredients?.length > 0 }"
-      >
+      <div v-if="item.recipes?.length > 0" class="mt-4">
         <h2 class="text-xl font-bold mb-4 leading-4">
           {{ item.recipes.length > 1 ? "Recettes" : "Recette" }}
         </h2>
@@ -86,7 +83,7 @@ const quality = {
           </NuxtLink>
         </div>
       </div>
-      <div v-if="item.recipeIngredients?.length > 0">
+      <div v-if="item.recipeIngredients?.length > 0" class="mt-4">
         <h2 class="text-xl font-bold mb-4 leading-4">
           {{
             item.recipeIngredients.length > 1

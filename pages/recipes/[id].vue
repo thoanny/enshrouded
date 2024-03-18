@@ -5,13 +5,25 @@ const { data: recipe } = await useFetch(
   `https://api.lebusmagique.fr/api/enshrouded/recipes/${route.params.id}`
 );
 
+const seoDescription = recipe.value.outputItem.description
+  ? recipe.value.outputItem.description
+      .split("---")
+      .pop()
+      .replace(/<[^>]*>?/gm, "")
+      .replace(/\r?\n|\r/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+  : "Base de données de recettes d'Enshrouded, jeu de survie coopératif.";
+
 useSeoMeta({
-  title: recipe.value.outputItem.name,
-  ogTitle: recipe.value.outputItem.name,
-  // description: "This is my amazing site, let me tell you all about it.",
-  // ogDescription: "This is my amazing site, let me tell you all about it.",
-  // ogImage: "https://example.com/image.png",
-  // twitterCard: "summary_large_image",
+  title: `Recette : ${recipe.value.outputItem.name}`,
+  ogTitle: `Recette : ${recipe.value.outputItem.name}`,
+  description: seoDescription,
+  ogDescription: seoDescription,
+  ogImage: recipe.value.outputItem.icon
+    ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.value.outputItem.icon}`
+    : "/enshrouded.jpg",
+  twitterCard: "summary",
 });
 </script>
 

@@ -1,11 +1,12 @@
 <script setup>
 useSeoMeta({
-  title: "Toutes les recettes",
-  ogTitle: "Toutes les recettes",
-  // description: "This is my amazing site, let me tell you all about it.",
-  // ogDescription: "This is my amazing site, let me tell you all about it.",
-  // ogImage: "https://example.com/image.png",
-  // twitterCard: "summary_large_image",
+  title: "Tous les objets",
+  ogTitle: "Tous les objets",
+  description: `Base de données de recettes d'Enshrouded, jeu de survie coopératif.`,
+  ogDescription:
+    "Base de données de recettes d'Enshrouded, jeu de survie coopératif.",
+  ogImage: "/enshrouded.jpg",
+  twitterCard: "summary_large_image",
 });
 
 const source = ref(-1);
