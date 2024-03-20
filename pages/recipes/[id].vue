@@ -20,10 +20,24 @@ useSeoMeta({
   ogTitle: `Recette : ${recipe.value.outputItem.name}`,
   description: seoDescription,
   ogDescription: seoDescription,
-  ogImage: recipe.value.outputItem.icon
+});
+
+const quality = {
+  common: "#e1f3d2",
+  uncommon: "#53d57d",
+  rare: "#a8e1ff",
+  epic: "#d4b5ff",
+  legendary: "#ffe03e",
+};
+
+defineOgImageComponent("EnshroudedSeo", {
+  headline: "Recette",
+  title: recipe.value.outputItem.name,
+  theme: quality[recipe.value.outputItem.quality],
+  description: seoDescription,
+  icon: recipe.value.outputItem.icon
     ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${recipe.value.outputItem.icon}`
-    : "/enshrouded.jpg",
-  twitterCard: "summary",
+    : null,
 });
 </script>
 
