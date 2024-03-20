@@ -8,6 +8,16 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  app: {
+    head: {
+      meta: [
+        {
+          name: "google-site-verification",
+          content: "YrP2hR-VHPoAqSy2Bw9JxNQLBXNelDPaDJkwqAuudKM",
+        },
+      ],
+    },
+  },
   site: {
     url: "https://enshrouded.vercel.app",
   },
