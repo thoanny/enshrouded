@@ -5,8 +5,6 @@ useSeoMeta({
   description: `Base de données d'objets d'Enshrouded, jeu de survie coopératif.`,
   ogDescription:
     "Base de données d'objets d'Enshrouded, jeu de survie coopératif.",
-  ogImage: "/enshrouded.jpg",
-  twitterCard: "summary_large_image",
 });
 
 const category = ref("");

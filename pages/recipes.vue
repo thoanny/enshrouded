@@ -5,8 +5,6 @@ useSeoMeta({
   description: `Base de données de recettes d'Enshrouded, jeu de survie coopératif.`,
   ogDescription:
     "Base de données de recettes d'Enshrouded, jeu de survie coopératif.",
-  ogImage: "/enshrouded.jpg",
-  twitterCard: "summary_large_image",
 });
 
 const source = ref(-1);

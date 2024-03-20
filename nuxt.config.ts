@@ -19,10 +19,11 @@ export default defineNuxtConfig({
     },
   },
   site: {
+    name: "Base de données Enshrouded",
     url: "https://enshrouded.vercel.app",
   },
   sitemap: {
     sources: ["https://api.lebusmagique.fr/api/enshrouded/sitemap"],
   },
-  modules: ["@nuxtjs/mdc", "@nuxtjs/sitemap"],
+  modules: ["@nuxtjs/mdc", "@nuxtjs/sitemap", "nuxt-og-image", "nuxt-icon"],
 });

@@ -15,15 +15,29 @@ const seoDescription = item.value.description
       .trim()
   : "Base de données d'objets d'Enshrouded, jeu de survie coopératif.";
 
+const quality = {
+  common: "#e1f3d2",
+  uncommon: "#53d57d",
+  rare: "#a8e1ff",
+  epic: "#d4b5ff",
+  legendary: "#ffe03e",
+};
+
+defineOgImageComponent("EnshroudedSeo", {
+  headline: item.value.category?.name,
+  title: item.value.name,
+  theme: quality[item.value.quality],
+  description: seoDescription,
+  icon: item.value.icon
+    ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${item.value.icon}`
+    : null,
+});
+
 useSeoMeta({
   title: item.value.name,
   ogTitle: item.value.name,
   description: seoDescription,
   ogDescription: seoDescription,
-  ogImage: item.value.icon
-    ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${item.value.icon}`
-    : "/enshrouded.jpg",
-  twitterCard: "summary",
 });
 </script>
 

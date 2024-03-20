@@ -5,8 +5,6 @@ useSeoMeta({
     "Bienvenue Flameborns ! Vous trouverez dans cette base de données des informations et outils pour accompagner vos sessions sur le jeu Enshrouded, développé et édité par Keen games.",
   ogDescription:
     "Bienvenue Flameborns ! Vous trouverez dans cette base de données des informations et outils pour accompagner vos sessions sur le jeu Enshrouded, développé et édité par Keen games.",
-  ogImage: "/enshrouded.jpg",
-  twitterCard: "summary_large_image",
 });
 
 const { data: stats } = await useFetch(
