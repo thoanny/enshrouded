@@ -17,13 +17,18 @@ import {
   AisHits,
   AisPagination,
   AisPoweredBy,
+  AisRefinementList,
 } from "vue-instantsearch/vue3/es";
 </script>
 
 <template>
   <div class="container mx-auto">
     <div>
-      <ais-instant-search :index-name="indexName" :search-client="algolia">
+      <ais-instant-search
+        :index-name="indexName"
+        :search-client="algolia"
+        :future="{ preserveSharedStateOnUnmount: true }"
+      >
         <ais-search-box placeholder="Chercher un objet...">
           <template v-slot:submit-icon>
             <svg
@@ -52,21 +57,137 @@ import {
             </svg>
           </template>
         </ais-search-box>
-        <ais-hits>
-          <template v-slot:item="{ item }">
-            <button class="" @click="openSearchModal(item.id)">
-              <img
-                :src="`https://api.lebusmagique.fr/media/cache/resolve/enshrouded_item_icon_48/uploads/api/enshrouded/items/${item.icon}`"
-                alt=""
-                class="h-10 w-10"
-                v-if="item.icon"
-              />
-              {{ item.name }}
-            </button>
-          </template>
-        </ais-hits>
-        <ais-pagination />
-        <ais-powered-by theme="dark" />
+        <div class="flex flex-col-reverse lg:flex-row gap-6 items-start mt-4">
+          <div class="w-full lg:w-2/5 xl:w-1/4">
+            <div class="rounded-box bg-base-200 p-4">
+              <h4 class="text-xl font-bold leading-5 mb-2">Catégories</h4>
+              <ais-refinement-list
+                attribute="category.name"
+                :sort-by="['isRefined', 'name:asc']"
+                show-more
+              >
+                <template
+                  v-slot="{
+                    items,
+                    isShowingMore,
+                    isFromSearch,
+                    canToggleShowMore,
+                    refine,
+                    toggleShowMore,
+                  }"
+                >
+                  <ul>
+                    <li v-if="isFromSearch && !items.length">No results.</li>
+                    <li v-for="item in items" :key="item.value">
+                      <div class="form-control">
+                        <label
+                          class="label cursor-pointer justify-start gap-2 py-1"
+                          @click.prevent="refine(item.value)"
+                        >
+                          <input
+                            type="checkbox"
+                            :checked="item.isRefined"
+                            class="checkbox checkbox-xs checkbox-secondary"
+                          />
+                          <span class="label-text">
+                            {{ item.label }}
+                            <span class="badge badge-sm badge-neutral">
+                              {{ item.count.toLocaleString() }}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                  <button
+                    @click="toggleShowMore"
+                    v-if="canToggleShowMore"
+                    class="btn btn-outline btn-xs mt-2"
+                  >
+                    {{ !isShowingMore ? "Afficher plus" : "Afficher moins" }}
+                  </button>
+                </template>
+              </ais-refinement-list>
+              <h4 class="text-xl font-bold leading-5 mb-2 mt-4">Recettes</h4>
+              <ais-refinement-list attribute="hasRecipes">
+                <template v-slot="{ items, isFromSearch, refine }">
+                  <ul>
+                    <li v-if="isFromSearch && !items.length">No results.</li>
+                    <li v-for="item in items" :key="item.value">
+                      <div class="form-control">
+                        <label
+                          class="label cursor-pointer justify-start gap-2 py-1"
+                          @click.prevent="refine(item.value)"
+                        >
+                          <input
+                            type="checkbox"
+                            :checked="item.isRefined"
+                            class="checkbox checkbox-xs checkbox-secondary"
+                          />
+                          <span class="label-text">
+                            {{
+                              item.value === "true"
+                                ? "Avec recette"
+                                : "Sans recette"
+                            }}
+                            <span class="badge badge-sm badge-neutral">
+                              {{ item.count.toLocaleString() }}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </template>
+              </ais-refinement-list>
+              <h4 class="text-xl font-bold leading-5 mb-2 mt-4">Qualités</h4>
+              <ais-refinement-list attribute="qualityName">
+                <template v-slot="{ items, isFromSearch, refine }">
+                  <ul>
+                    <li v-if="isFromSearch && !items.length">No results.</li>
+                    <li v-for="item in items" :key="item.value">
+                      <div class="form-control">
+                        <label
+                          class="label cursor-pointer justify-start gap-2 py-1"
+                          @click.prevent="refine(item.value)"
+                        >
+                          <input
+                            type="checkbox"
+                            :checked="item.isRefined"
+                            class="checkbox checkbox-xs checkbox-secondary"
+                          />
+                          <span class="label-text">
+                            {{ item.label }}
+                            <span class="badge badge-sm badge-neutral">
+                              {{ item.count.toLocaleString() }}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </template>
+              </ais-refinement-list>
+            </div>
+          </div>
+          <div class="w-full lg:w-3/5 xl:w-3/4">
+            <ais-hits>
+              <template v-slot:item="{ item }">
+                <button class="" @click="openSearchModal(item.id)">
+                  <img
+                    :src="`https://api.lebusmagique.fr/media/cache/resolve/enshrouded_item_icon_48/uploads/api/enshrouded/items/${item.icon}`"
+                    alt=""
+                    class="h-10 w-10"
+                    v-if="item.icon"
+                  />
+                  {{ item.name }}
+                </button>
+              </template>
+            </ais-hits>
+            <ais-pagination />
+            <ais-powered-by theme="dark" />
+          </div>
+        </div>
       </ais-instant-search>
     </div>
     <dialog ref="searchModal" class="modal">
@@ -102,7 +223,7 @@ import {
 }
 
 .ais-Hits-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 gap-2 lg:grid-cols-3 mt-4;
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-2 xl:grid-cols-3;
 
   button {
     @apply flex w-full p-4 items-center justify-center bg-base-200 rounded-box gap-2 h-16 text-left;
