@@ -25,5 +25,18 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ["https://api.lebusmagique.fr/api/enshrouded/sitemap"],
   },
-  modules: ["@nuxtjs/mdc", "@nuxtjs/sitemap", "nuxt-og-image", "nuxt-icon"],
+  algolia: {
+    apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+    applicationId: process.env.ALGOLIA_APPLICATION_ID,
+    instantSearch: {
+      theme: "reset",
+    },
+  },
+  modules: [
+    "@nuxtjs/mdc",
+    "@nuxtjs/sitemap",
+    "nuxt-og-image",
+    "nuxt-icon",
+    "@nuxtjs/algolia",
+  ],
 });
