@@ -97,7 +97,10 @@ defineOgImageComponent("EnshroudedSeo", {
             class="flex gap-4 items-center justify-between text-lg"
             v-for="ingredient in recipe.ingredients"
           >
-            <div class="flex gap-2 items-center">
+            <NuxtLink
+              :to="{ name: 'items-id', params: { id: ingredient.item.id } }"
+              class="flex gap-2 items-center hover:text-white"
+            >
               <img
                 :src="`https://api.lebusmagique.fr${ingredient.item.icon48x48}`"
                 :alt="ingredient.item.name"
@@ -107,7 +110,8 @@ defineOgImageComponent("EnshroudedSeo", {
                 v-if="ingredient.item.icon48x48"
               />
               <span>{{ ingredient.item.name }}</span>
-            </div>
+            </NuxtLink>
+
             <div>&times;&nbsp;{{ ingredient.quantity }}</div>
           </div>
         </div>
