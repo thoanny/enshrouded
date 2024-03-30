@@ -191,7 +191,7 @@ import {
       </ais-instant-search>
     </div>
     <dialog ref="searchModal" class="modal">
-      <div class="modal-box">
+      <div class="modal-box p-0">
         <ItemDetails v-if="item" :item="item" />
       </div>
       <form method="dialog" class="modal-backdrop">
