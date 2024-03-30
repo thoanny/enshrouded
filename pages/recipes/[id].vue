@@ -44,7 +44,10 @@ defineOgImageComponent("EnshroudedSeo", {
 <template>
   <div class="flex flex-col lg:flex-row gap-4">
     <div class="w-full lg:w-3/5">
-      <ItemDetails :item="recipe.outputItem" />
+      <ItemDetails
+        :item="recipe.outputItem"
+        :quantity="recipe.outputQuantity"
+      />
     </div>
     <div class="w-full lg:w-2/5">
       <div

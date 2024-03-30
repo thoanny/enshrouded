@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["item"]);
+const props = defineProps(["item", "quantity"]);
 
 const quality = {
   common: "Ordinaire",
@@ -32,9 +32,14 @@ const quality = {
       />
     </header>
     <div
-      :class="`text-quality-${item.quality} border-b-2 border-quality-${item.quality} uppercase font-semibold pb-2 px-4 -mx-4 -mt-12`"
+      :class="`border-b-2 border-quality-${item.quality} uppercase pb-2 px-4 -mx-4 -mt-12 flex gap-4 justify-between items-end`"
     >
-      {{ quality[item.quality] }}
+      <span :class="`text-quality-${item.quality} font-semibold`">
+        {{ quality[item.quality] }}
+      </span>
+      <span v-if="quantity && quantity > 1" class="text-2xl leading-none">
+        &times;{{ quantity }}
+      </span>
     </div>
     <div class="overflow-hidden min-h-20 relative pt-12">
       <div
