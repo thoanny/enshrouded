@@ -87,9 +87,9 @@ import {
                           <input
                             type="checkbox"
                             :checked="item.isRefined"
-                            class="checkbox checkbox-xs checkbox-secondary"
+                            class="checkbox checkbox-sm checkbox-secondary"
                           />
-                          <span class="label-text">
+                          <span class="">
                             {{ item.label }}
                             <span class="badge badge-sm badge-neutral">
                               {{ item.count.toLocaleString() }}
@@ -102,7 +102,7 @@ import {
                   <button
                     @click="toggleShowMore"
                     v-if="canToggleShowMore"
-                    class="btn btn-outline btn-xs mt-2"
+                    class="btn btn-outline btn-sm mt-2"
                   >
                     {{ !isShowingMore ? "Afficher plus" : "Afficher moins" }}
                   </button>
@@ -122,9 +122,9 @@ import {
                           <input
                             type="checkbox"
                             :checked="item.isRefined"
-                            class="checkbox checkbox-xs checkbox-secondary"
+                            class="checkbox checkbox-sm checkbox-secondary"
                           />
-                          <span class="label-text">
+                          <span class="">
                             {{
                               item.value === "true"
                                 ? "Avec recette"
@@ -154,9 +154,9 @@ import {
                           <input
                             type="checkbox"
                             :checked="item.isRefined"
-                            class="checkbox checkbox-xs checkbox-secondary"
+                            class="checkbox checkbox-sm checkbox-secondary"
                           />
-                          <span class="label-text">
+                          <span class="">
                             {{ item.label }}
                             <span class="badge badge-sm badge-neutral">
                               {{ item.count.toLocaleString() }}
@@ -175,12 +175,12 @@ import {
               <template v-slot:item="{ item }">
                 <button class="" @click="openSearchModal(item.id)">
                   <img
-                    :src="`https://api.lebusmagique.fr/media/cache/resolve/enshrouded_item_icon_48/uploads/api/enshrouded/items/${item.icon}`"
+                    :src="`https://api.lebusmagique.fr/media/cache/resolve/enshrouded_item_icon_96/uploads/api/enshrouded/items/${item.icon}`"
                     alt=""
-                    class="h-10 w-10"
+                    class="w-full aspect-square shrink-0"
                     v-if="item.icon"
                   />
-                  {{ item.name }}
+                  <span class="text-sm p-2" v-else>{{ item.name }}</span>
                 </button>
               </template>
             </ais-hits>
@@ -223,10 +223,10 @@ import {
 }
 
 .ais-Hits-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 gap-2 xl:grid-cols-3;
+  @apply grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-5 xl:grid-cols-8 2xl:grid-cols-10 gap-2 w-full overflow-y-auto;
 
   button {
-    @apply flex w-full p-4 items-center justify-center bg-base-200 rounded-box gap-2 h-16 text-left;
+    @apply rounded-xl aspect-square w-full flex flex-col items-center justify-center text-center overflow-hidden border border-neutral;
 
     &:hover {
       @apply bg-base-300;

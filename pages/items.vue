@@ -62,6 +62,7 @@ watch(category, async () => {
             class="w-full aspect-square shrink-0"
             width="96"
             height="96"
+            loading="lazy"
             v-if="item.icon96x96"
           />
           <span class="text-xs p-2 truncate" v-else>{{ item.name }}</span>
