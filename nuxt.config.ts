@@ -38,5 +38,6 @@ export default defineNuxtConfig({
     "nuxt-og-image",
     "nuxt-icon",
     "@nuxtjs/algolia",
+    "nuxt3-leaflet",
   ],
 });
