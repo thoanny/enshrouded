@@ -66,13 +66,13 @@ const data = ref([
       {
         id: "as04",
         coords: [29.935895213372444, 27.026367187500004],
-        name: "Tous des Anciens - Plateaux nomades",
+        name: "Tour des Anciens - Plateaux nomades",
         image: null,
       },
       {
         id: "as05",
         coords: [-8.928487062665504, 77.73925781250001],
-        name: "Tous des Anciens - Regs exaltés",
+        name: "Tour des Anciens - Regs exaltés",
         image: null,
       },
     ],
@@ -115,6 +115,7 @@ const data = ref([
     visible: true,
     icon: "elixir-well.png",
     iconChecked: "elixir-well-checked.png",
+    checked: true,
     markers: [
       {
         id: "elixir-well-01",
@@ -321,10 +322,17 @@ const data = ref([
 
 const getMarkerIcon = (marker, group) => {
   if (marker.icon) {
+    if (marker.checked && marker.iconChecked) {
+      return `img/map/${marker.iconChecked}`;
+    }
+
     return `img/map/${marker.icon}`;
   }
 
   if (group.icon) {
+    if (marker.checked && group.iconChecked) {
+      return `img/map/${group.iconChecked}`;
+    }
     return `img/map/${group.icon}`;
   }
 
@@ -376,7 +384,6 @@ const setZoom = (direction) => {
     >
       <LTileLayer
         url="https://api.lebusmagique.fr/uploads/api/enshrouded/map-tiles/{z}/{x}/{y}.jpg"
-        attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
         layer-type="base"
         name="Embervale"
         :no-wrap="true"
@@ -490,15 +497,6 @@ const setZoom = (direction) => {
         </div>
       </LControl>
 
-      <LMarker :lat-lng="[0, 0]">
-        <LIcon
-          icon-url="img/map/flame-checked.png"
-          :icon-size="[60, 60]"
-          :popup-anchor="[0, -30]"
-        />
-        <LPopup>center</LPopup>
-      </LMarker>
-
       <LLayerGroup name="custom" :visible="true">
         <LMarker
           v-for="(latLng, idx) in customMarkers"
@@ -522,11 +520,24 @@ const setZoom = (direction) => {
           <LIcon
             :icon-url="getMarkerIcon(marker, group)"
             :icon-size="[60, 60]"
-            :popup-anchor="[0, -30]"
+            :popup-anchor="[0, -25]"
           />
           <LPopup>
             <h4>{{ marker.name }}</h4>
             <div>{{ marker.description }}</div>
+            <div class="form-control" v-if="group.checked">
+              <label
+                class="cursor-pointer label justify-start gap-1 p-0 pt-2 pb-1"
+              >
+                <input
+                  type="checkbox"
+                  class="toggle toggle-success toggle-xs"
+                  :checked="marker.checked"
+                  @change="marker.checked = !marker.checked"
+                />
+                <span class="label-text">Terminé</span>
+              </label>
+            </div>
           </LPopup>
         </LMarker>
       </LLayerGroup>
@@ -535,7 +546,27 @@ const setZoom = (direction) => {
 </template>
 
 <style>
-body {
-  margin: 0;
+.leaflet-popup .leaflet-popup-content-wrapper {
+  @apply bg-base-100 text-neutral-content py-2 px-3 rounded-none min-h-8 border border-base-100;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  @apply m-0 mr-5 text-sm;
+}
+
+.leaflet-popup .leaflet-popup-content h4 {
+  @apply text-base font-semibold;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  @apply bg-base-100;
+}
+
+.leaflet-popup .leaflet-popup-close-button {
+  @apply !text-lg !bg-neutral rounded-full !text-neutral-content !w-8 !h-8 flex items-center justify-center !-top-2 !-right-2;
+}
+
+.leaflet-popup .leaflet-popup-close-button:hover {
+  @apply !text-white;
 }
 </style>
