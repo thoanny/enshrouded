@@ -481,7 +481,12 @@ const setZoom = (direction) => {
                       alt=""
                       class="h-7 w-7"
                     />
-                    <span class="label-text">{{ group.name }}</span>
+                    <span class="label-text">
+                      {{ group.name }}
+                      <span class="badge badge-neutral badge-xs">{{
+                        group.markers.length
+                      }}</span>
+                    </span>
                   </span>
 
                   <input
