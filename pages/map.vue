@@ -9,7 +9,7 @@ defineOgImageComponent("EnshroudedSeo", {
   headline: "Boîte à outils",
   title: seoTitle,
   description: seoDescription,
-  icon: "/img/map-seo-img.png",
+  icon: "/map-seo-img.png",
 });
 
 useSeoMeta({
@@ -34,306 +34,310 @@ const createMarker = (e) => {
   customMarkers.value.push(e.latlng);
 };
 
-const data = ref([
-  {
-    id: "ancient-spire",
-    name: "Tours des Anciens",
-    visible: true,
-    icon: "ancient-spire.png",
-    iconChecked: "ancient-spire-checked.png",
-    checked: false,
-    markers: [
-      {
-        id: "as01",
-        coords: [-23.644524198573677, -74.02587890625001],
-        name: "Tour des Anciens - Hautes patûres",
-        image: null,
-      },
-      {
-        id: "as02",
-        coords: [26.175158990178133, -64.66552734375001],
-        name: "Tour des Anciens - Bois envoûtés",
-        description: "xxx yyy tour 02",
-        image: null,
-      },
-      {
-        id: "as03",
-        coords: [-33.57801474614399, -30.739746093750004],
-        name: "Tour des Anciens - Mornes plaines",
-        description: "xxx yyy tour 03",
-        image: null,
-      },
-      {
-        id: "as04",
-        coords: [29.935895213372444, 27.026367187500004],
-        name: "Tour des Anciens - Plateaux nomades",
-        image: null,
-      },
-      {
-        id: "as05",
-        coords: [-8.928487062665504, 77.73925781250001],
-        name: "Tour des Anciens - Regs exaltés",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "cave",
-    name: "Grottes",
-    visible: false,
-    icon: "cave.png",
-    iconChecked: "cave-checked.png",
-    markers: [
-      {
-        id: "c01",
-        coords: [11.26461221250444, 25.576171875],
-        name: "Caverne 01",
-        description: "xxx yyy caverne 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "dungeon",
-    name: "Donjons",
-    visible: false,
-    icon: "dungeon.png",
-    iconChecked: "dungeon-checked.png",
-    markers: [
-      {
-        id: "d01",
-        coords: [-14.093957177836224, 21.533203125000004],
-        name: "Donjon 01",
-        description: "xxx yyy donjon 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "elixir-well",
-    name: "Puits d'élixir",
-    visible: true,
-    icon: "elixir-well.png",
-    iconChecked: "elixir-well-checked.png",
-    checked: true,
-    markers: [
-      {
-        id: "elixir-well-01",
-        coords: [-32.546813173515154, -64.02832031250001],
-        name: "Puit d'élixir 01",
-        image: null,
-      },
-      {
-        id: "elixir-well-02",
-        coords: [-41.211721510547875, -84.44091796875],
-        name: "Puit d'élixir 02",
-        image: null,
-      },
-      {
-        id: "elixir-well-03",
-        coords: [-26.45090222367262, -64.73144531250001],
-        name: "Puit d'élixir 03",
-        image: null,
-      },
-      {
-        id: "elixir-well-04",
-        coords: [-22.350075806124853, -78.50830078125001],
-        name: "Puit d'élixir 04",
-        image: null,
-      },
-      {
-        id: "elixir-well-05",
-        coords: [-13.923403897723347, -92.373046875],
-        name: "Puit d'élixir 05",
-        image: null,
-      },
-      {
-        id: "elixir-well-06",
-        coords: [-6.970049417296218, -84.68261718750001],
-        name: "Puit d'élixir 06",
-        image: null,
-      },
-      {
-        id: "elixir-well-07",
-        coords: [13.774066408054827, -96.7236328125],
-        name: "Puit d'élixir 07",
-        image: null,
-      },
-      {
-        id: "elixir-well-08",
-        coords: [39.04478604850143, -89.62646484375001],
-        name: "Puit d'élixir 08",
-        image: null,
-      },
-      {
-        id: "elixir-well-08",
-        coords: [-43.436965965218235, -50.60302734375001],
-        name: "Puit d'élixir 08",
-        image: null,
-      },
-      {
-        id: "elixir-well-09",
-        coords: [-32.73184089686568, -43.70361328125001],
-        name: "Puit d'élixir 09",
-        image: null,
-      },
-      {
-        id: "elixir-well-10",
-        coords: [35.37113502280101, -39.37500000000001],
-        name: "Puit d'élixir 10",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "flame",
-    name: "Flamme",
-    visible: false,
-    icon: "flame.png",
-    iconChecked: "flame-checked.png",
-    markers: [
-      {
-        id: "f01",
-        coords: [-0.3515602939922709, 28.4765625],
-        name: "Flamme 01",
-        description: "xxx yyy flamme 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "flame-shrine",
-    name: "Sanctuaires de la Flamme",
-    visible: false,
-    icon: "flame-shrine.png",
-    iconChecked: "flame-shrine-checked.png",
-    markers: [
-      {
-        id: "fs01",
-        coords: [-12.46876014482322, -15.117187500000002],
-        name: "Flame Shrine 01",
-        description: "xxx yyy flame shrine 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "mine",
-    name: "Mines",
-    visible: false,
-    icon: "mine.png",
-    iconChecked: "mine-checked.png",
-    markers: [
-      {
-        id: "m01",
-        coords: [4.039617826768437, -18.984375000000004],
-        name: "Mine 01",
-        description: "xxx yyy mine 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "ancient-obelisk",
-    name: "Obélisques anciens",
-    visible: false,
-    icon: "ancient-obelisk.png",
-    iconChecked: "ancient-obelisk-checked.png",
-    markers: [
-      {
-        id: "m01",
-        coords: [24.44714958973082, 23.5546875],
-        name: "Obélisque ancien 01",
-        description: "xxx yyy Obélisque ancien 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "enemy-camp",
-    name: "Camps ennemis",
-    visible: false,
-    icon: "enemy-camp.png",
-    iconChecked: "enemy-camp-checked.png",
-    markers: [
-      {
-        id: "m01",
-        coords: [14.689881366618774, -7.470703125000001],
-        name: "Obélisque ancienne 01",
-        description: "xxx yyy Obélisque ancienne 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "hollow-hall",
-    name: "Salles creuses",
-    visible: true,
-    icon: "hollow-hall.png",
-    iconChecked: "hollow-hall-checked.png",
-    markers: [
-      {
-        id: "hollow-hall-01",
-        coords: [-39.04478604850143, -97.3828125],
-        name: "Salles creuses des Hautes patûres",
-        image: null,
-      },
-      {
-        id: "hollow-hall-02",
-        coords: [31.952162238024975, -95.84472656250001],
-        name: "Salles creuses des Bois envoûtés",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "survivor-camp",
-    name: "Camps de survivants",
-    visible: false,
-    icon: "survivor-camp.png",
-    iconChecked: "survivor-camp-checked.png",
-    markers: [
-      {
-        id: "m01",
-        coords: [12.211180191503997, 9.931640625000002],
-        name: "Obélisque ancienne 01",
-        description: "xxx yyy Obélisque ancienne 01",
-        image: null,
-      },
-    ],
-  },
-  {
-    id: "tomb",
-    name: "Cryptes",
-    visible: false,
-    icon: "tomb.png",
-    iconChecked: "tomb-checked.png",
-    markers: [
-      {
-        id: "m01",
-        coords: [-13.923403897723347, 0.26367187500000006],
-        name: "Obélisque ancienne 01",
-        description: "xxx yyy Obélisque ancienne 01",
-        image: null,
-      },
-    ],
-  },
-]);
+const API = "https://api.lebusmagique.fr";
+
+const { data } = await useFetch(`${API}/api/enshrouded/map`);
+
+// const data = ref([
+//   {
+//     id: "ancient-spire",
+//     name: "Tours des Anciens",
+//     visible: true,
+//     icon: "ancient-spire.png",
+//     iconChecked: "ancient-spire-checked.png",
+//     checked: false,
+//     markers: [
+//       {
+//         id: "as01",
+//         coords: [-23.644524198573677, -74.02587890625001],
+//         name: "Tour des Anciens - Hautes patûres",
+//         image: null,
+//       },
+//       {
+//         id: "as02",
+//         coords: [26.175158990178133, -64.66552734375001],
+//         name: "Tour des Anciens - Bois envoûtés",
+//         description: "xxx yyy tour 02",
+//         image: null,
+//       },
+//       {
+//         id: "as03",
+//         coords: [-33.57801474614399, -30.739746093750004],
+//         name: "Tour des Anciens - Mornes plaines",
+//         description: "xxx yyy tour 03",
+//         image: null,
+//       },
+//       {
+//         id: "as04",
+//         coords: [29.935895213372444, 27.026367187500004],
+//         name: "Tour des Anciens - Plateaux nomades",
+//         image: null,
+//       },
+//       {
+//         id: "as05",
+//         coords: [-8.928487062665504, 77.73925781250001],
+//         name: "Tour des Anciens - Regs exaltés",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "cave",
+//     name: "Grottes",
+//     visible: false,
+//     icon: "cave.png",
+//     iconChecked: "cave-checked.png",
+//     markers: [
+//       {
+//         id: "c01",
+//         coords: [11.26461221250444, 25.576171875],
+//         name: "Caverne 01",
+//         description: "xxx yyy caverne 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "dungeon",
+//     name: "Donjons",
+//     visible: false,
+//     icon: "dungeon.png",
+//     iconChecked: "dungeon-checked.png",
+//     markers: [
+//       {
+//         id: "d01",
+//         coords: [-14.093957177836224, 21.533203125000004],
+//         name: "Donjon 01",
+//         description: "xxx yyy donjon 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "elixir-well",
+//     name: "Puits d'élixir",
+//     visible: true,
+//     icon: "elixir-well.png",
+//     iconChecked: "elixir-well-checked.png",
+//     checked: true,
+//     markers: [
+//       {
+//         id: "elixir-well-01",
+//         coords: [-32.546813173515154, -64.02832031250001],
+//         name: "Puit d'élixir 01",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-02",
+//         coords: [-41.211721510547875, -84.44091796875],
+//         name: "Puit d'élixir 02",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-03",
+//         coords: [-26.45090222367262, -64.73144531250001],
+//         name: "Puit d'élixir 03",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-04",
+//         coords: [-22.350075806124853, -78.50830078125001],
+//         name: "Puit d'élixir 04",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-05",
+//         coords: [-13.923403897723347, -92.373046875],
+//         name: "Puit d'élixir 05",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-06",
+//         coords: [-6.970049417296218, -84.68261718750001],
+//         name: "Puit d'élixir 06",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-07",
+//         coords: [13.774066408054827, -96.7236328125],
+//         name: "Puit d'élixir 07",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-08",
+//         coords: [39.04478604850143, -89.62646484375001],
+//         name: "Puit d'élixir 08",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-08",
+//         coords: [-43.436965965218235, -50.60302734375001],
+//         name: "Puit d'élixir 08",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-09",
+//         coords: [-32.73184089686568, -43.70361328125001],
+//         name: "Puit d'élixir 09",
+//         image: null,
+//       },
+//       {
+//         id: "elixir-well-10",
+//         coords: [35.37113502280101, -39.37500000000001],
+//         name: "Puit d'élixir 10",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "flame",
+//     name: "Flamme",
+//     visible: false,
+//     icon: "flame.png",
+//     iconChecked: "flame-checked.png",
+//     markers: [
+//       {
+//         id: "f01",
+//         coords: [-0.3515602939922709, 28.4765625],
+//         name: "Flamme 01",
+//         description: "xxx yyy flamme 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "flame-shrine",
+//     name: "Sanctuaires de la Flamme",
+//     visible: false,
+//     icon: "flame-shrine.png",
+//     iconChecked: "flame-shrine-checked.png",
+//     markers: [
+//       {
+//         id: "fs01",
+//         coords: [-12.46876014482322, -15.117187500000002],
+//         name: "Flame Shrine 01",
+//         description: "xxx yyy flame shrine 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "mine",
+//     name: "Mines",
+//     visible: false,
+//     icon: "mine.png",
+//     iconChecked: "mine-checked.png",
+//     markers: [
+//       {
+//         id: "m01",
+//         coords: [4.039617826768437, -18.984375000000004],
+//         name: "Mine 01",
+//         description: "xxx yyy mine 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "ancient-obelisk",
+//     name: "Obélisques anciens",
+//     visible: false,
+//     icon: "ancient-obelisk.png",
+//     iconChecked: "ancient-obelisk-checked.png",
+//     markers: [
+//       {
+//         id: "m01",
+//         coords: [24.44714958973082, 23.5546875],
+//         name: "Obélisque ancien 01",
+//         description: "xxx yyy Obélisque ancien 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "enemy-camp",
+//     name: "Camps ennemis",
+//     visible: false,
+//     icon: "enemy-camp.png",
+//     iconChecked: "enemy-camp-checked.png",
+//     markers: [
+//       {
+//         id: "m01",
+//         coords: [14.689881366618774, -7.470703125000001],
+//         name: "Obélisque ancienne 01",
+//         description: "xxx yyy Obélisque ancienne 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "hollow-hall",
+//     name: "Salles creuses",
+//     visible: true,
+//     icon: "hollow-hall.png",
+//     iconChecked: "hollow-hall-checked.png",
+//     markers: [
+//       {
+//         id: "hollow-hall-01",
+//         coords: [-39.04478604850143, -97.3828125],
+//         name: "Salles creuses des Hautes patûres",
+//         image: null,
+//       },
+//       {
+//         id: "hollow-hall-02",
+//         coords: [31.952162238024975, -95.84472656250001],
+//         name: "Salles creuses des Bois envoûtés",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "survivor-camp",
+//     name: "Camps de survivants",
+//     visible: false,
+//     icon: "survivor-camp.png",
+//     iconChecked: "survivor-camp-checked.png",
+//     markers: [
+//       {
+//         id: "m01",
+//         coords: [12.211180191503997, 9.931640625000002],
+//         name: "Obélisque ancienne 01",
+//         description: "xxx yyy Obélisque ancienne 01",
+//         image: null,
+//       },
+//     ],
+//   },
+//   {
+//     id: "tomb",
+//     name: "Cryptes",
+//     visible: false,
+//     icon: "tomb.png",
+//     iconChecked: "tomb-checked.png",
+//     markers: [
+//       {
+//         id: "m01",
+//         coords: [-13.923403897723347, 0.26367187500000006],
+//         name: "Obélisque ancienne 01",
+//         description: "xxx yyy Obélisque ancienne 01",
+//         image: null,
+//       },
+//     ],
+//   },
+// ]);
 
 const getMarkerIcon = (marker, group) => {
-  if (marker.icon) {
-    if (marker.checked && marker.iconChecked) {
-      return `img/map/${marker.iconChecked}`;
+  if (marker.iconUrl) {
+    if (marker.checked && marker.iconCheckedUrl) {
+      return `${API}/${marker.iconCheckedUrl}`;
     }
 
-    return `img/map/${marker.icon}`;
+    return `${API}/${marker.iconUrl}`;
   }
 
-  if (group.icon) {
-    if (marker.checked && group.iconChecked) {
-      return `img/map/${group.iconChecked}`;
+  if (group.iconUrl) {
+    if (marker.checked && group.iconCheckedUrl) {
+      return `${API}/${group.iconCheckedUrl}`;
     }
-    return `img/map/${group.icon}`;
+    return `${API}/${group.iconUrl}`;
   }
 
   return `img/map/default.png`;
@@ -392,7 +396,10 @@ const setZoom = (direction) => {
       <LControl position="topleft">
         <div class="flex flex-col gap-2">
           <div class="flex gap-1" style="zoom: 0.85">
-            <label class="btn btn-neutral btn-circle swap swap-rotate">
+            <label
+              class="btn btn-neutral btn-circle swap swap-rotate"
+              v-if="data"
+            >
               <input
                 type="checkbox"
                 :checked="showGroupsList"
@@ -470,6 +477,7 @@ const setZoom = (direction) => {
           </div>
           <div
             class="bg-base-200 rounded-box py-3 px-4 w-full max-w-xs text-sm"
+            v-if="data"
             v-show="showGroupsList"
           >
             <div class="flex flex-col gap-1">
@@ -477,9 +485,10 @@ const setZoom = (direction) => {
                 <label class="label cursor-pointer gap-4 p-0">
                   <span class="flex gap-1 items-center">
                     <img
-                      :src="`img/map/${group.id}-symbol.svg`"
+                      :src="`${API}/${group.iconMenuUrl}`"
                       alt=""
                       class="h-7 w-7"
+                      v-if="group.iconMenuUrl"
                     />
                     <span class="label-text">
                       {{ group.name }}
@@ -514,13 +523,13 @@ const setZoom = (direction) => {
 
       <LLayerGroup
         v-for="group in data"
-        :key="group.id"
+        :key="group.uid"
         :visible="group.visible"
       >
         <LMarker
           v-for="marker in group.markers"
-          :key="marker.id"
-          :lat-lng="marker.coords"
+          :key="marker.uid"
+          :lat-lng="[marker.posX, marker.posY]"
         >
           <LIcon
             :icon-url="getMarkerIcon(marker, group)"
@@ -528,20 +537,34 @@ const setZoom = (direction) => {
             :popup-anchor="[0, -25]"
           />
           <LPopup>
-            <h4>{{ marker.name }}</h4>
-            <div>{{ marker.description }}</div>
-            <div class="form-control" v-if="group.checked">
-              <label
-                class="cursor-pointer label justify-start gap-1 p-0 pt-2 pb-1"
-              >
-                <input
-                  type="checkbox"
-                  class="toggle toggle-success toggle-xs"
-                  :checked="marker.checked"
-                  @change="marker.checked = !marker.checked"
-                />
-                <span class="label-text">Terminé</span>
-              </label>
+            <img
+              :src="`https://i3.ytimg.com/vi/${marker.video}/maxresdefault.jpg`"
+              alt=""
+              class="w-full block aspect-video object-cover"
+              v-if="marker.video"
+            />
+            <img
+              :src="`${API}/${marker.imageUrl}`"
+              alt=""
+              class="w-full block aspect-video object-cover"
+              v-else-if="marker.imageUrl"
+            />
+            <div class="py-2 px-3 mr-5">
+              <h4>{{ marker.name }}</h4>
+              <div v-if="marker.description">{{ marker.description }}</div>
+              <div class="form-control" v-if="group.checked">
+                <label
+                  class="cursor-pointer label justify-start gap-1 p-0 pt-2 pb-1"
+                >
+                  <input
+                    type="checkbox"
+                    class="toggle toggle-success toggle-xs"
+                    :checked="marker.checked"
+                    @change="marker.checked = !marker.checked"
+                  />
+                  <span class="label-text">Terminé</span>
+                </label>
+              </div>
             </div>
           </LPopup>
         </LMarker>
@@ -552,11 +575,11 @@ const setZoom = (direction) => {
 
 <style>
 .leaflet-popup .leaflet-popup-content-wrapper {
-  @apply bg-base-100 text-neutral-content py-2 px-3 rounded-none min-h-8 border border-base-100;
+  @apply bg-base-100 text-neutral-content rounded-none min-h-8 border border-base-100 min-w-80 max-w-80;
 }
 
 .leaflet-popup .leaflet-popup-content {
-  @apply m-0 mr-5 text-sm;
+  @apply m-0 text-sm !w-full;
 }
 
 .leaflet-popup .leaflet-popup-content h4 {
