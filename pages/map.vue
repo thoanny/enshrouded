@@ -30,6 +30,7 @@ const zoomMin = 3;
 const zoomMax = 6;
 const customMarkers = ref([]);
 const showGroupsList = ref(true);
+const userMarkers = ref([]);
 
 const addMarker = ref(false);
 
@@ -44,8 +45,9 @@ const API = "https://api.lebusmagique.fr";
 const { data } = await useFetch(`${API}/api/enshrouded/map`);
 
 const getMarkerIcon = (marker, group) => {
+  const markerChecked = userMarkers.value.indexOf(marker.uid) >= 0;
   if (marker.iconUrl) {
-    if (marker.checked && marker.iconCheckedUrl) {
+    if (markerChecked && marker.iconCheckedUrl) {
       return `${API}/${marker.iconCheckedUrl}`;
     }
 
@@ -53,7 +55,7 @@ const getMarkerIcon = (marker, group) => {
   }
 
   if (group.iconUrl) {
-    if (marker.checked && group.iconCheckedUrl) {
+    if (markerChecked && group.iconCheckedUrl) {
       return `${API}/${group.iconCheckedUrl}`;
     }
     return `${API}/${group.iconUrl}`;
@@ -84,6 +86,24 @@ const openModal = (type, data) => {
 const closeModal = () => {
   modalContent.value.type = null;
 };
+
+const updateUserMarkers = (uid) => {
+  const idx = userMarkers.value.indexOf(uid);
+  if (idx >= 0) {
+    userMarkers.value.splice(idx, 1);
+  } else {
+    userMarkers.value.push(uid);
+  }
+
+  localStorage.setItem("map-user-markers", JSON.stringify(userMarkers.value));
+};
+
+onMounted(() => {
+  const localUserMarkers = localStorage.getItem("map-user-markers");
+  if (localUserMarkers) {
+    userMarkers.value = JSON.parse(localUserMarkers);
+  }
+});
 </script>
 
 <template>
@@ -112,7 +132,7 @@ const closeModal = () => {
       ]"
       :options="{ zoomControl: false }"
       @click="createMarker($event)"
-      class="!cursor-crosshair"
+      class="!cursor-crosshair outline-none"
     >
       <LTileLayer
         url="https://api.lebusmagique.fr/uploads/api/enshrouded/map-tiles/{z}/{x}/{y}.jpg"
@@ -258,6 +278,7 @@ const closeModal = () => {
           v-for="marker in group.markers"
           :key="marker.uid"
           :lat-lng="[marker.posX, marker.posY]"
+          :options="{ riseOnHover: true }"
         >
           <LIcon
             :icon-url="getMarkerIcon(marker, group)"
@@ -341,8 +362,8 @@ const closeModal = () => {
                   <input
                     type="checkbox"
                     class="toggle toggle-success toggle-xs"
-                    :checked="marker.checked"
-                    @change="marker.checked = !marker.checked"
+                    :checked="userMarkers.indexOf(marker.uid) >= 0"
+                    @change="updateUserMarkers(marker.uid)"
                   />
                   <span class="label-text">Terminé</span>
                 </label>
@@ -411,5 +432,9 @@ const closeModal = () => {
 
 .leaflet-popup .leaflet-popup-close-button:hover {
   @apply !text-white;
+}
+
+.leaflet-marker-icon {
+  @apply outline-none;
 }
 </style>
