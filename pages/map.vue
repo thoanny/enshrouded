@@ -331,7 +331,7 @@ const closeModal = () => {
               />
             </div>
 
-            <div class="py-2 px-3 mr-5">
+            <div class="py-2 px-3">
               <h4>{{ marker.name }}</h4>
               <div v-if="marker.description">{{ marker.description }}</div>
               <div class="form-control" v-if="group.checked">
