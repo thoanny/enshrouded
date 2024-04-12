@@ -19,6 +19,11 @@ useSeoMeta({
   ogDescription: seoDescription,
 });
 
+const modal = ref();
+const modalContent = ref({
+  type: null,
+  data: null,
+});
 const map = ref();
 const zoom = ref(4);
 const zoomMin = 3;
@@ -69,6 +74,15 @@ const setZoom = (direction) => {
       zoom.value--;
     }
   }
+};
+
+const openModal = (type, data) => {
+  modalContent.value = { type, data };
+  modal.value.showModal();
+};
+
+const closeModal = () => {
+  modalContent.value.type = null;
 };
 </script>
 
@@ -251,18 +265,72 @@ const setZoom = (direction) => {
             :popup-anchor="[0, -25]"
           />
           <LPopup>
-            <img
-              :src="`https://i3.ytimg.com/vi/${marker.video}/maxresdefault.jpg`"
-              alt=""
-              class="w-full block aspect-video object-cover"
+            <div
+              class="aspect-video w-full relative flex items-center justify-center cursor-pointer"
+              @click="openModal('video', marker.video)"
               v-if="marker.video"
-            />
-            <img
-              :src="`${API}/${marker.imageUrl}`"
-              alt=""
-              class="w-full block aspect-video object-cover"
+            >
+              <span
+                class="btn btn-neutral btn-circle relative z-20 text-white no-animation"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    d="M9 6a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5A.75.75 0 0 1 9 6Z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Zm7-5.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              <img
+                :src="`https://i3.ytimg.com/vi/${marker.video}/maxresdefault.jpg`"
+                alt=""
+                class="object-cover absolute w-full h-full z-10"
+              />
+            </div>
+            <div
+              class="aspect-video w-full relative flex items-center justify-center cursor-pointer"
+              @click="
+                openModal(
+                  'image',
+                  `${API}/media/cache/960x540${marker.imageUrl}`
+                )
+              "
               v-else-if="marker.imageUrl"
-            />
+            >
+              <span
+                class="btn btn-neutral btn-circle relative z-20 text-white no-animation"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    d="M9 6a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5A.75.75 0 0 1 9 6Z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Zm7-5.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+              <img
+                :src="`${API}/media/cache/384x216${marker.imageUrl}`"
+                alt=""
+                class="object-cover absolute w-full h-full z-10"
+              />
+            </div>
+
             <div class="py-2 px-3 mr-5">
               <h4>{{ marker.name }}</h4>
               <div v-if="marker.description">{{ marker.description }}</div>
@@ -285,6 +353,39 @@ const setZoom = (direction) => {
       </LLayerGroup>
     </LMap>
   </div>
+  <dialog ref="modal" class="modal">
+    <div class="modal-box max-w-4xl p-0 overflow-hidden border border-neutral">
+      <form method="dialog">
+        <button
+          class="btn btn-sm btn-circle absolute right-2 top-2"
+          @click="closeModal"
+        >
+          ✕
+        </button>
+      </form>
+      <iframe
+        width="560"
+        height="315"
+        class="w-full h-full aspect-video"
+        :src="`https://www.youtube-nocookie.com/embed/${modalContent.data}`"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        v-if="modalContent.type === 'video'"
+      ></iframe>
+      <img
+        :src="modalContent.data"
+        alt=""
+        v-else-if="modalContent.type === 'image'"
+      />
+      <div class="py-2 px-3" v-else>Error</div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button @click="closeModal">close</button>
+    </form>
+  </dialog>
 </template>
 
 <style>
@@ -305,7 +406,7 @@ const setZoom = (direction) => {
 }
 
 .leaflet-popup .leaflet-popup-close-button {
-  @apply !text-lg !bg-neutral rounded-full !text-neutral-content !w-8 !h-8 flex items-center justify-center !-top-2 !-right-2;
+  @apply hidden !text-lg !bg-neutral rounded-full !text-neutral-content !w-8 !h-8 flex items-center justify-center !-top-2 !-right-2 z-30;
 }
 
 .leaflet-popup .leaflet-popup-close-button:hover {

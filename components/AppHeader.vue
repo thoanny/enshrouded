@@ -17,7 +17,7 @@ const menuModal = ref();
     <ul class="hidden lg:flex h-full items-center gap-4 font-bold">
       <li><NuxtLink :to="{ name: 'items' }">Objets</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'recipes' }">Recettes</NuxtLink></li>
-      <!-- <li><NuxtLink :to="{ name: 'map' }">Carte interactive</NuxtLink></li> -->
+      <li><NuxtLink :to="{ name: 'map' }">Carte interactive</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'about' }">À propos</NuxtLink></li>
       <li>
         <NuxtLink :to="{ name: 'search' }">
