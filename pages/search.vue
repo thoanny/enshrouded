@@ -175,9 +175,10 @@ import {
               <template v-slot:item="{ item }">
                 <button class="" @click="openSearchModal(item.id)">
                   <img
-                    :src="`https://api.lebusmagique.fr/media/cache/resolve/enshrouded_item_icon_96/uploads/api/enshrouded/items/${item.icon}`"
+                    :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_96/uploads/api/enshrouded/items/${item.icon}`"
                     alt=""
                     class="w-full aspect-square shrink-0"
+                    loading="lazy"
                     v-if="item.icon"
                   />
                   <span class="text-sm p-2" v-else>{{ item.name }}</span>

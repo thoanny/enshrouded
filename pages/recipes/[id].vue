@@ -65,7 +65,7 @@ defineOgImageComponent("EnshroudedSeo", {
                 :src="
                   requirement.source.npc
                     ? `https://api.lebusmagique.fr/uploads/api/enshrouded/items/${requirement.source.npc.icon}`
-                    : `https://api.lebusmagique.fr${requirement.source.item.icon48x48}`
+                    : `https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_48/uploads/api/enshrouded/items/${requirement.source.item.icon}`
                 "
                 :alt="
                   requirement.source.npc
@@ -78,7 +78,7 @@ defineOgImageComponent("EnshroudedSeo", {
                 v-if="
                   requirement.source.npc
                     ? requirement.source.npc.icon
-                    : requirement.source.item.icon48x48
+                    : requirement.source.item.icon
                 "
               />
               <span>{{
@@ -102,12 +102,12 @@ defineOgImageComponent("EnshroudedSeo", {
               class="flex gap-2 items-center hover:text-white"
             >
               <img
-                :src="`https://api.lebusmagique.fr${ingredient.item.icon48x48}`"
+                :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_48/uploads/api/enshrouded/items/${ingredient.item.icon}`"
                 :alt="ingredient.item.name"
                 class="w-12 h-12 bg-black bg-opacity-25 rounded-lg"
                 width="48"
                 height="48"
-                v-if="ingredient.item.icon48x48"
+                v-if="ingredient.item.icon"
               />
               <span>{{ ingredient.item.name }}</span>
             </NuxtLink>

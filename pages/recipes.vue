@@ -103,12 +103,12 @@ const getChildRecipesCount = (category) => {
                         class="italic"
                       >
                         <img
-                          :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
+                          :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_24/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
                           :alt="recipe.outputItem.name"
                           class="w-6 h-6 rounded"
                           width="24"
                           height="24"
-                          v-if="recipe.outputItem.icon24x24"
+                          v-if="recipe.outputItem.icon"
                         />
                         {{ recipe.outputItem.name }}
                       </NuxtLink>
@@ -122,12 +122,12 @@ const getChildRecipesCount = (category) => {
                   class="italic"
                 >
                   <img
-                    :src="`https://api.lebusmagique.fr${recipe.outputItem.icon24x24}`"
+                    :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_24/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
                     :alt="recipe.outputItem.name"
                     class="w-6 h-6 rounded"
                     width="24"
                     height="24"
-                    v-if="recipe.outputItem.icon24x24"
+                    v-if="recipe.outputItem.icon"
                   />
                   {{ recipe.outputItem.name }}
                 </NuxtLink>
