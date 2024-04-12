@@ -87,7 +87,7 @@ const getChildRecipesCount = (category) => {
                 :key="subcategory.id"
               >
                 <details v-if="subcategory.recipesCount > 0">
-                  <summary>
+                  <summary class="italic">
                     {{ subcategory.name }}
                     <span class="badge badge-sm badge-primary">{{
                       subcategory.recipesCount
@@ -100,7 +100,7 @@ const getChildRecipesCount = (category) => {
                           name: 'recipes-id',
                           params: { id: recipe.id },
                         }"
-                        class="italic"
+                        class=""
                       >
                         <img
                           :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_24/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
@@ -119,7 +119,7 @@ const getChildRecipesCount = (category) => {
               <li v-for="recipe in category.recipes" :key="recipe.id">
                 <NuxtLink
                   :to="{ name: 'recipes-id', params: { id: recipe.id } }"
-                  class="italic"
+                  class=""
                 >
                   <img
                     :src="`https://api.lebusmagique.fr/media/cache/enshrouded_item_icon_24/uploads/api/enshrouded/items/${recipe.outputItem.icon}`"
