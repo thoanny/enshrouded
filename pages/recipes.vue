@@ -151,5 +151,6 @@ const getChildRecipesCount = (category) => {
   opacity: 0;
   border: none;
   margin: 0;
+  display: none;
 }
 </style>
