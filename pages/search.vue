@@ -1,4 +1,13 @@
 <script setup>
+import {
+  AisInstantSearch,
+  AisSearchBox,
+  AisHits,
+  AisPagination,
+  AisPoweredBy,
+  AisRefinementList,
+} from "vue-instantsearch/vue3/es";
+
 const searchModal = ref();
 const item = ref(null);
 
@@ -11,24 +20,12 @@ const openSearchModal = async (itemId) => {
 
 const indexName = "prod_enshrouded_items";
 const algolia = useAlgoliaRef();
-import {
-  AisInstantSearch,
-  AisSearchBox,
-  AisHits,
-  AisPagination,
-  AisPoweredBy,
-  AisRefinementList,
-} from "vue-instantsearch/vue3/es";
 </script>
 
 <template>
   <div class="container mx-auto">
     <div>
-      <ais-instant-search
-        :index-name="indexName"
-        :search-client="algolia"
-        :future="{ preserveSharedStateOnUnmount: true }"
-      >
+      <ais-instant-search :index-name="indexName" :search-client="algolia">
         <ais-search-box placeholder="Chercher un objet...">
           <template v-slot:submit-icon>
             <svg
