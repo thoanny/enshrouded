@@ -1,5 +1,10 @@
 <script setup>
+const { status, refresh, refreshToken, data } = useAuth();
 const menuModal = ref();
+
+// onMounted(async () => {
+//   if (refreshToken.value) await refresh();
+// });
 </script>
 
 <template>
@@ -19,6 +24,12 @@ const menuModal = ref();
       <li><NuxtLink :to="{ name: 'recipes' }">Recettes</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'map' }">Carte interactive</NuxtLink></li>
       <li><NuxtLink :to="{ name: 'about' }">À propos</NuxtLink></li>
+      <li>
+        <NuxtLink :to="{ name: 'login' }"
+          >{{ status === "authenticated" ? "Mon compte" : "Connexion" }} -
+          {{ data?.nickname }}</NuxtLink
+        >
+      </li>
       <li>
         <NuxtLink :to="{ name: 'search' }">
           <svg

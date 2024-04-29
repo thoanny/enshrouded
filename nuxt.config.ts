@@ -32,6 +32,27 @@ export default defineNuxtConfig({
       theme: "reset",
     },
   },
+  auth: {
+    baseURL: "http://localhost:8000/api",
+    provider: {
+      type: "refresh",
+      endpoints: {
+        signIn: { path: "/login", method: "post" },
+        signOut: { path: "/logout", method: "get" },
+        signUp: { path: "/register", method: "post" },
+        getSession: { path: "/user", method: "get" },
+        refresh: { path: "/login/refresh", method: "post" },
+      },
+      pages: {
+        login: "/login",
+      },
+      token: { signInResponseTokenPointer: "/token" },
+      refreshToken: {
+        signInResponseRefreshTokenPointer: "/refresh_token",
+        refreshRequestTokenPointer: "/refresh_token",
+      },
+    },
+  },
   modules: [
     "@nuxtjs/mdc",
     "@nuxtjs/sitemap",
@@ -39,5 +60,6 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxtjs/algolia",
     "nuxt3-leaflet",
+    "@sidebase/nuxt-auth",
   ],
 });

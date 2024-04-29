@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nuxtjs/algolia": "^1.10.1",
+    "@sidebase/nuxt-auth": "^0.7.1",
     "nuxt": "^3.10.3",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
