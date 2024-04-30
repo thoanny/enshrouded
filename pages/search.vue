@@ -25,7 +25,11 @@ const algolia = useAlgoliaRef();
 <template>
   <div class="container mx-auto">
     <div>
-      <ais-instant-search :index-name="indexName" :search-client="algolia">
+      <ais-instant-search
+        :index-name="indexName"
+        :search-client="algolia"
+        :future="{ preserveSharedStateOnUnmount: true }"
+      >
         <ais-search-box placeholder="Chercher un objet...">
           <template v-slot:submit-icon>
             <svg

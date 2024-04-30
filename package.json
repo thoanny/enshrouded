@@ -13,6 +13,7 @@
     "@nuxtjs/algolia": "^1.10.1",
     "nuxt": "^3.10.3",
     "vue": "^3.4.21",
+    "vue-matomo": "^4.2.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
